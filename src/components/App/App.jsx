@@ -22,8 +22,6 @@ export default class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    didMount: false,
-    contactExists: false,
   };
 
   filterContacts = (contacts, filter) => {
@@ -53,15 +51,7 @@ export default class App extends Component {
       ? this.setState(state => ({
           contacts: [...state.contacts, contactToAdd],
         }))
-      : this.setState(
-          prevState => ({ contactExists: !prevState.contactExists }),
-          () =>
-            setTimeout(() => {
-              this.setState(prevState => ({
-                contactExists: !prevState.contactExists,
-              }));
-            }, 1000),
-        );
+      : alert(`${contact.name} is already added to the contact list`);
   };
 
   deleteContact = id => {
